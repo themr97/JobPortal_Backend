@@ -43,7 +43,7 @@ app.use(passportConfig.initialize());
 app.use("/auth", require("./routes/auth"));
 app.use("/api", require("./routes/api"));
 app.use("/upload", require("./routes/upload"));
-// app.use("/host", require("./routes/downloadRoutes"));
+app.use("/host", require("./routes/download"));
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}!`);

@@ -6,7 +6,7 @@ const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
 
 const User = require("../models/User");
-
+// const authKeys = require("./authKeys");
 
 
 require('dotenv').config()
@@ -31,7 +31,6 @@ passport.use(
             passReqToCallback: true,
         },
         (req, email, password, done, res) => {
-            // console.log(email, password);
             User.findOne({ email: email }, (err, user) => {
                 if (err) {
                     return done(err);
@@ -67,7 +66,6 @@ passport.use(
         (jwt_payload, done) => {
             User.findById(jwt_payload._id)
                 .then((user) => {
-                    console.log(Object.keys(jwt_payload));
                     if (!user) {
                         return done(null, false, {
                             message: "JWT Token does not exist",

@@ -12,7 +12,8 @@ const upload = multer();
 
 router.post("/resume", upload.single("file"), (req, res) => {
     const { file } = req;
-    if (file.detectedFileExtension != ".pdf") {
+    console.log(file);
+    if (file.detectedFileExtension !== ".pdf") {
         res.status(400).json({
             message: "Invalid format",
         });

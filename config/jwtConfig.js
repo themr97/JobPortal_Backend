@@ -6,6 +6,7 @@ const jwtAuth = (req, res, next) => {
             return next(err);
         }
         if (!user) {
+            console.log(info)
             res.status(401).json(info);
             return;
         }
