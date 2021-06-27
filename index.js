@@ -1,8 +1,8 @@
 const express = require("express");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const passportConfig = require("./config/passportConfig");
-const cors = require("cors");
 const fs = require("fs");
 
 
@@ -20,7 +20,7 @@ mongoose
     .then((res) => console.log("Connected to DB"))
     .catch((err) => console.log(err));
 
-// initialising directories
+
 if (!fs.existsSync("./public")) {
     fs.mkdirSync("./public");
 }
@@ -29,17 +29,17 @@ if (!fs.existsSync("./public/resume")) {
 }
 
 const app = express();
-const port = 4444;
+const port = process.env.PORT || 4444;
 
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-// Setting up middlewares
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+
 app.use(express.json());
 app.use(passportConfig.initialize());
 
-// Routing
+
 app.use("/auth", require("./routes/auth"));
 app.use("/api", require("./routes/api"));
 app.use("/upload", require("./routes/upload"));

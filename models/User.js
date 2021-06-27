@@ -22,7 +22,7 @@ let schema = new mongoose.Schema(
     { collation: { locale: "en" } }
 );
 
-// Password hashing
+
 schema.pre("save", function (next) {
     let user = this;
 
@@ -40,7 +40,7 @@ schema.pre("save", function (next) {
     });
 });
 
-// Password verification upon login
+
 schema.methods.login = function (password) {
     let user = this;
 
