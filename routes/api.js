@@ -168,7 +168,7 @@ router.get("/applicants", jwtAuth, (req, res) => {
         Application.aggregate([
             {
                 $lookup: {
-                    from: "jobapplicantinfos",
+                    from: "jobapplicant",
                     localField: "userId",
                     foreignField: "userId",
                     as: "jobApplicant",
