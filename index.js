@@ -41,7 +41,7 @@ app.use(passportConfig.initialize());
 
 // Routing
 app.use("/auth", require("./routes/auth"));
-// app.use("/api", require("./routes/apiRoutes"));
+app.use("/api", require("./routes/api"));
 app.use("/upload", require("./routes/upload"));
 // app.use("/host", require("./routes/downloadRoutes"));
 
